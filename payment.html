@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Payment - Smart Brain</title>
+<link href="https://i.top4top.io/p_3474t6e4k1.png" rel="shortcut icon" type="image/x-icon"/>
+<style>
+        body { background: #f8f9fa; font-family: 'Segoe UI', Arial, sans-serif; }
+        .payment-form { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px #0002; padding: 36px 32px; }
+        .payment-title { text-align: center; margin-bottom: 18px; font-weight: 700; color: #2d3a4b; }
+        .payment-note { background: #e9f7ef; color: #1e6b3a; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; font-size: 1rem; border-left: 4px solid #1e6b3a; }
+        .form-check-label img { height: 24px; margin-right: 8px; vertical-align: middle; }
+        .btn-primary { background: #1e6b3a; border: none; }
+        .btn-primary:hover { background: #15582c; }
+        label.form-label { font-weight: 500; }
+    </style>
+<link href="style.css" rel="stylesheet"/></head>
+<body id="section_1">
+<header class="site-header">
+<nav class="navbar navbar-expand-lg bg-light shadow-lg">
+<div class="container">
+<a class="navbar-brand" href="index.html">
+<img alt="Kind Heart Charity" class="logo img-fluid" src="https://i.top4top.io/p_3474t6e4k1.png"/>
+<span>
+                        Smart Brain
+                        <small>The live Statded Now</small>
+</span>
+</a>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item">
+<a class="nav-link click-scroll" href="index.html#top">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link click-scroll" href="index.html#section_2">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link click-scroll" href="index.html#section_6">Contact</a>
+</li>
+<li class="nav-item ms-3">
+<a class="nav-link custom-btn custom-border-btn btn" href="donate.html">Donate</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<div class="payment-form">
+<h2 class="payment-title">Choose Your Course &amp; Pay Now</h2>
+<div class="payment-note">
+<strong>Note:</strong> This course is provided by <b>Harvard University</b>.<br/>
+                To claim your gift after completing the course, please contact support at <a href="mailto:admin@ymoo.site">admin@ymoo.site</a> or WhatsApp <a href="https://wa.me/201108279642" target="_blank">+201108279642</a>.
+            </div>
+<form>
+<div class="mb-3">
+<label class="form-label" for="course">Select Paid Course</label>
+<select class="form-select" id="course" required="">
+<option disabled="" selected="" value="">Select a course</option>
+<option value="python">Learn Python</option>
+<option value="office">Learn Microsoft Office</option>
+<option value="web">Learn Web Development</option>
+<option value="scholarship">Scholarship Program</option>
+</select>
+</div>
+<div class="mb-3">
+<label class="form-label">Choose Payment Method</label>
+<div class="form-check">
+<input class="form-check-input" id="visa" name="paymentMethod" required="" type="radio" value="visa"/>
+<label class="form-check-label" for="visa">
+<img alt="Visa" src="https://cdn-icons-png.flaticon.com/512/349/349221.png"/> Visa
+                        </label>
+</div>
+<div class="form-check">
+<input class="form-check-input" id="mastercard" name="paymentMethod" type="radio" value="mastercard"/>
+<label class="form-check-label" for="mastercard">
+<img alt="MasterCard" src="https://cdn-icons-png.flaticon.com/512/196/196561.png"/> MasterCard
+                        </label>
+</div>
+<div class="form-check">
+<input class="form-check-input" id="vodafone" name="paymentMethod" type="radio" value="vodafone"/>
+<label class="form-check-label" for="vodafone">
+<img alt="Vodafone Cash" src="https://cdn-icons-png.flaticon.com/512/5968/5968778.png"/> Vodafone Cash
+                        </label>
+</div>
+</div>
+<div id="card-info" style="display:none;">
+<div class="mb-3">
+<label class="form-label" for="cardNumber">Card Number</label>
+<input class="form-control" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" type="text"/>
+</div>
+<div class="row">
+<div class="col">
+<label class="form-label" for="expDate">Expiry Date</label>
+<input class="form-control" id="expDate" maxlength="5" placeholder="MM/YY" type="text"/>
+</div>
+<div class="col">
+<label class="form-label" for="cvv">CVV</label>
+<input class="form-control" id="cvv" maxlength="4" placeholder="CVV" type="text"/>
+</div>
+</div>
+</div>
+<div id="vodafone-info" style="display:none;">
+<div class="mb-3">
+<label class="form-label" for="vodafoneNumber">Vodafone Cash Number</label>
+<input class="form-control" id="vodafoneNumber" maxlength="11" placeholder="01XXXXXXXXX" type="text"/>
+</div>
+</div>
+<button class="btn btn-primary w-100 mt-3" type="submit">Pay Now</button>
+</form>
+</div>
+</main>
+<script>
+        // Show/hide payment fields
+        $(function() {
+            $('input[name="paymentMethod"]').on('change', function() {
+                if ($(this).val() === 'visa' || $(this).val() === 'mastercard') {
+                    $('#card-info').slideDown(200);
+                    $('#vodafone-info').slideUp(200);
+                } else if ($(this).val() === 'vodafone') {
+                    $('#card-info').slideUp(200);
+                    $('#vodafone-info').slideDown(200);
+                }
+            });
+        });
+    </script>
+<script src="script.js"></script></body>
+</html>

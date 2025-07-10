@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Admin Panel</title>
+<link href="style.css" rel="stylesheet"/></head>
+<body class="p-4">
+<div id="login-box" style="max-width:400px;margin:auto;">
+<h3>Admin Login</h3>
+<input class="form-control mb-2" id="adminPass" placeholder="Enter admin password" type="password"/>
+<button class="btn btn-primary w-100" onclick="verifyAdmin()">Login</button>
+<div class="text-danger mt-2" id="errMsg" style="display:none;">Wrong password</div>
+</div>
+<div id="admin-panel" style="display:none;">
+<h3>Users</h3>
+<ul class="list-group mb-4" id="userList"></ul>
+<h4>Promote Plan</h4>
+<input class="form-control mb-2" id="promoteEmail" placeholder="User email"/>
+<select class="form-select mb-2" id="promotePlan">
+<option value="pro">Pro</option>
+<option value="premium">Premium</option>
+<option value="organization">Organization</option>
+</select>
+<button class="btn btn-success mb-4" onclick="promoteUser()">Promote</button>
+</div>
+<script>
+  function verifyAdmin() {
+    const pass = document.getElementById("adminPass").value;
+    if (pass === "2411") {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("admin-panel").style.display = "block";
+      loadUsers();
+    } else {
+      document.getElementById("errMsg").style.display = "block";
+    }
+  }
+
+  function loadUsers() {
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const list = document.getElementById("userList");
+    list.innerHTML = "";
+    users.forEach((u, i) => {
+      const li = document.createElement("li");
+      li.className = "list-group-item";
+      li.textContent = `${u.name} (${u.email}) - Plan: ${u.plan || "free"}`;
+      list.appendChild(li);
+    });
+  }
+
+  function promoteUser() {
+    const email = document.getElementById("promoteEmail").value.trim();
+    const newPlan = document.getElementById("promotePlan").value;
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find(u => u.email === email);
+    if (user) {
+      user.plan = newPlan;
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("Plan updated");
+      loadUsers();
+    } else {
+      alert("User not found");
+    }
+  }
+</script>
+<script src="script.js"></script></body>
+</html>

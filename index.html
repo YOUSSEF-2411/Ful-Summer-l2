@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content=" Education" name="description"/>
+<meta content="Smart Brain" name="author"/>
+<title>Smart Brain</title>
+<link href="https://i.top4top.io/p_3474t6e4k1.png" rel="shortcut icon" type="image/x-icon"/>
+<!-- CSS FILES -->
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<div id="plan-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:10000;">
+<div style="background:white;padding:30px;border-radius:10px;text-align:center;max-width:350px;width:100%;">
+<h4 style="margin-bottom:20px;">Choose your plan</h4>
+<button class="btn btn-success mb-2 w-100" onclick="selectPlan('free')">Free</button>
+<button class="btn btn-primary mb-2 w-100" onclick="askPassword('pro')">Pro</button>
+<button class="btn btn-warning mb-2 w-100" onclick="askPassword('premium')">Premium</button>
+<button class="btn btn-dark w-100" onclick="askPassword('organization')">Organization</button>
+<div id="password-box" style="display:none;margin-top:15px;">
+<input class="form-control mb-2" id="plan-password" placeholder="Enter plan password" type="password"/>
+<button class="btn btn-secondary w-100" onclick="verifyPassword()">Submit</button>
+</div>
+<div id="pass-error" style="color:red;margin-top:10px;display:none;">Invalid password</div>
+</div>
+</div>
+<script src="script.js"></script></body>
+<body class="dark-mode" id="section_1" style="background:#181a1b; transition: background 0.5s;">
+<header class="site-header" style="position:sticky;top:0;z-index:1040;box-shadow:0 2px 8px #0002;background:#23242a;">
+<nav class="navbar navbar-expand-lg shadow-lg" id="main-navbar">
+<div class="container">
+<a class="navbar-brand" href="index.html">
+<img alt="Kind Heart Charity" class="logo img-fluid" src="https://i.top4top.io/p_3474t6e4k1.png"/>
+<span>
+                        Smart Brain
+                        <small>The live Statded Now</small>
+</span>
+</a>
+<button class="btn btn-outline-secondary me-2" id="toggle-dark" title="Toggle Night/Day Mode">
+<i class="bi bi-moon" id="toggle-dark-icon"></i>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto align-items-center">
+<li class="nav-item">
+<a class="nav-link click-scroll" href="#top">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link click-scroll" href="#section_2">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link click-scroll" href="upload.html">Upload</a>
+</li>
+<li class="nav-item">
+<a class="nav-link click-scroll" href="pricing.html">Pricing</a>
+</li>
+<button class="btn btn-outline-secondary me-2" id="lang-toggle" title="Change Language">AR</button>
+<li class="nav-item ms-3" id="login-nav">
+<a class="nav-link custom-btn custom-border-btn btn" href="login.html" id="loginBtn">Login</a>
+</li>
+<div id="user-info" style="display:flex;align-items:center;gap:12px;margin:20px;"></div>
+<div id="user-info" style="display:none; gap: 10px; margin: 20px; align-items: center;">
+<img alt="Avatar" id="profileImage" src="" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"/>
+<span id="userNameText" style="font-size: 1.2rem;"></span>
+<input accept="image/*" id="changeImage" style="display:none;" type="file"/>
+<button class="btn btn-sm btn-outline-primary" id="editNameBtn">Edit Name</button>
+<button class="btn btn-sm btn-outline-secondary" onclick="document.getElementById('changeImage').click();">Change Image</button>
+<button class="btn btn-sm btn-danger" id="logoutBtn">Logout</button>
+</div>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Login Modal (classic design) -->
+<!-- استبدل أو أضف هذا الزر في قائمة التنقل -->
+<main>
+<section class="hero-section" id="top">
+<div class="hero-content">
+<div class="container">
+<div class="row">
+<div class="col-lg-8 col-12 mx-auto text-center">
+<br/><br/>
+<img alt="logo" height="300" src="https://i.top4top.io/p_3474t6e4k1.png" width="300"/>
+<br/><br/>
+<h1 class="mb-4">Welcome To Smart Brain</h1>
+<p class="mb-5">We Are Here To Help You To Learn And Get Free Courses</p>
+<a class="custom-btn btn click-scroll" href="#section_2">Learn More</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section-padding">
+<div class="container">
+<div class="row">
+<div class="col-lg-10 col-12 text-center mx-auto">
+<h2 class="mb-5">Welcome In Our Website</h2>
+</div>
+<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+<div class="featured-block d-flex justify-content-center align-items-center">
+<img alt="Python" class="featured-block-image img-fluid" src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png"/>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+<div class="featured-block d-flex justify-content-center align-items-center">
+<img alt="Microsoft Office" class="featured-block-image img-fluid" src="https://cdn-icons-png.flaticon.com/512/732/732220.png"/>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
+<div class="featured-block d-flex justify-content-center align-items-center">
+<img alt="Web Development" class="featured-block-image img-fluid" src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"/>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+<div class="featured-block d-flex justify-content-center align-items-center">
+<img alt="Scholarship" class="featured-block-image img-fluid" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="quiz-section animated">
+<h3 class="text-center mb-4">🌐 Web Development Quiz</h3>
+<div class="question-block fade-in">
+<p><strong>1️⃣ What does HTML stand for?</strong></p>
+<label><input name="web1" type="radio" value="a"/> a) Hyperlinks and Text Markup Language</label><br/>
+<label><input name="web1" type="radio" value="b"/> b) Hyper Text Markup Language</label><br/>
+<label><input name="web1" type="radio" value="c"/> c) Home Tool Markup Language</label><br/>
+<label><input name="web1" type="radio" value="d"/> d) None of the above</label><br/>
+<button class="btn btn-sm btn-primary mt-2" onclick="checkAnswer('web1', 'b')">Check Answer</button>
+<div class="mt-2 fw-bold" id="result-web1"></div>
+</div>
+<div class="question-block fade-in">
+<p><strong>2️⃣ Which tag is used to embed JavaScript?</strong></p>
+<label><input name="web2" type="radio" value="a"/> a) &lt;javascript&gt;</label><br/>
+<label><input name="web2" type="radio" value="b"/> b) &lt;js&gt;</label><br/>
+<label><input name="web2" type="radio" value="c"/> c) &lt;script&gt;</label><br/>
+<label><input name="web2" type="radio" value="d"/> d) &lt;code&gt;</label><br/>
+<button class="btn btn-sm btn-primary mt-2" onclick="checkAnswer('web2', 'c')">Check Answer</button>
+<div class="mt-2 fw-bold" id="result-web2"></div>
+</div>
+<div class="question-block fade-in">
+<p><strong>3️⃣ Which CSS property changes the text color?</strong></p>
+<label><input name="web3" type="radio" value="a"/> a) background</label><br/>
+<label><input name="web3" type="radio" value="b"/> b) text-color</label><br/>
+<label><input name="web3" type="radio" value="c"/> c) color</label><br/>
+<label><input name="web3" type="radio" value="d"/> d) font-style</label><br/>
+<button class="btn btn-sm btn-primary mt-2" onclick="checkAnswer('web3', 'c')">Check Answer</button>
+<div class="mt-2 fw-bold" id="result-web3"></div>
+</div>
+</section>
+<section class="section-padding" id="rewards">
+<div class="container text-center">
+<h2 class="mb-4">Rewards Shop</h2>
+<!-- أضف هذا داخل <ul class="navbar-nav ..."> -->
+<li class="nav-item ms-3">
+<span class="badge bg-success fw-bold" id="pointsBadge">Points: 0</span>
+</li>
+<div class="row justify-content-center gy-4">
+<div class="col-md-4">
+<div class="p-4 border rounded-4 shadow-sm">
+<h5>Canva Pro 1 yr</h5>
+<p class="text-muted mb-2">150 points</p>
+<button class="btn btn-primary w-100" onclick="redeem(150,'Canva Pro')">
+            Redeem
+          </button>
+</div>
+</div>
+<div class="col-md-4">
+<div class="p-4 border rounded-4 shadow-sm">
+<h5>ChatGPT Plus 1 yr</h5>
+<p class="text-muted mb-2">300 points</p>
+<button class="btn btn-primary w-100" onclick="redeem(300,'ChatGPT Plus')">
+            Redeem
+          </button>
+</div>
+</div>
+<div class="col-md-4">
+<div class="p-4 border rounded-4 shadow-sm">
+<h5>Domain + Hosting</h5>
+<p class="text-muted mb-2">500 points</p>
+<button class="btn btn-primary w-100" onclick="redeem(500,'Domain + Hosting')">
+            Redeem
+          </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section-padding section-bg" id="section_2">
+<div class="container">
+<div class="row">
+<div class="col-lg-6 col-12 mb-5 mb-lg-0">
+<img alt="" class="custom-text-box-image img-fluid" src="https://i.top4top.io/p_3474t6e4k1.png"/>
+</div>
+<div class="col-lg-6 col-12">
+<div class="custom-text-box">
+<h2 class="mb-2">Our Story</h2>
+<h5 class="mb-3">Course Free Giver</h5>
+</div>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-12">
+<div class="custom-text-box mb-lg-0">
+<h5 class="mb-3">Our Mission</h5>
+<ul class="custom-list mt-2">
+<li class="custom-list-item d-flex">
+<i class="bi-check custom-text-box-icon me-2"></i>
+                                                Free Course
+                                            </li>
+<li class="custom-list-item d-flex">
+<i class="bi-check custom-text-box-icon me-2"></i>
+                                                With Out Ads
+                                            </li>
+</ul>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 col-12">
+<div class="custom-text-box d-flex flex-wrap d-lg-block mb-lg-0">
+<div class="counter-thumb">
+<div class="d-flex">
+<span class="counter-number" data-from="1" data-speed="1000" data-to="2025"></span>
+<span class="counter-number-text"></span>
+</div>
+<span class="counter-text">Founded</span>
+</div>
+<div class="counter-thumb mt-4">
+<div class="d-flex">
+<span class="counter-number" data-from="1" data-speed="1000" data-to="0"></span>
+<span class="counter-number-text"></span>
+</div>
+<span class="counter-text">Donations</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="code-section">
+<div class="container">
+<h2 class="title">Smart Brain Code Editor</h2>
+<p class="description">Explore, write, and run code directly in your browser with Smart Brain's powerful embedded editor.</p>
+<div class="iframe-wrapper">
+<iframe allowfullscreen="" frameborder="0" src="https://smartbrain-code-runner.lovable.app"></iframe>
+</div>
+</div>
+</section>
+<style>
+  .code-section {
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+
+  .iframe-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  @media (max-width: 600px) {
+    .title {
+      font-size: 1.8rem;
+    }
+    .description {
+      font-size: 1rem;
+    }
+  }
+</style>
+<section class="section-padding" id="student-benefits" style="background:linear-gradient(120deg,#f8fbff 60%,#e3f0ff 100%);">
+<div class="container">
+<div class="row justify-content-center align-items-center">
+<div class="col-lg-8 col-12 text-center mb-4">
+<h2 class="mb-4" style="font-weight:bold;letter-spacing:1px;color:#1976d2;">
+          Exclusive Student Benefits
+        </h2>
+<p style="font-size:1.15em;color:#333;">
+          As a student, you can get a <b>free domain &amp; hosting</b> for a year, <b>free Canva Pro</b> annual subscription, and <b>free ChatGPT Plus</b> for one year on your personal email.<br/>
+<span style="color:#1976d2;font-weight:bold;">Contact support on WhatsApp: <a href="https://wa.me/201108279642" style="color:#1976d2;" target="_blank">+201108279642</a> or email: <a href="mailto:admin@ymoo.site" style="color:#1976d2;">admin@ymoo.site</a></span>
+</p>
+</div>
+<div class="col-lg-10 col-12 mx-auto">
+<div class="row gy-4 justify-content-center text-center">
+<div class="col-md-4">
+<div class="benefit-card p-4 h-100" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px #1976d211;">
+<!-- Domain/Hosting SVG -->
+<div style="height:60px;">
+<img alt="Domain &amp; Hosting" height="48" loading="lazy" src="free.jpg" width="48"/>
+</div>
+<h5 class="mt-3 mb-2" style="color:#1976d2;">Free Domain &amp; Hosting</h5>
+<p style="font-size:1em;">Get a free domain and hosting for one year after finishing your course.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="benefit-card p-4 h-100" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px #1976d211;">
+<!-- Canva SVG -->
+<div style="height:60px;">
+<img alt="Canva Pro" height="48" loading="lazy" src="canva.jpg" width="48"/>
+</div>
+<h5 class="mt-3 mb-2" style="color:#1976d2;">Free Canva Pro</h5>
+<p style="font-size:1em;">Enjoy a free Canva Pro annual subscription for your personal email.</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="benefit-card p-4 h-100" style="background:#fff;border-radius:18px;box-shadow:0 2px 16px #1976d211;">
+<!-- ChatGPT SVG -->
+<div style="height:60px;">
+<img alt="ChatGPT" height="48" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" width="48"/>
+</div>
+<h5 class="mt-3 mb-2" style="color:#1976d2;">Free ChatGPT Plus</h5>
+<p style="font-size:1em;">Get ChatGPT Plus on your personal email for one year.</p>
+</div>
+</div>
+</div>
+</div>
+<section class="section-padding" id="halfood-course">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-10 col-12 text-center">
+<h2 class="mb-4" style="font-weight:bold;letter-spacing:1px;">
+          Free Course from Halfood American University
+        </h2>
+<video controls="" poster="https://i.top4top.io/p_3474t6e4k1.png" style="width:100%;max-width:900px;max-height:520px;display:block;margin:0 auto;border-radius:18px;box-shadow:0 8px 32px #1976d244;">
+<source src="/images/1.mp4" type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>
+</div>
+</div>
+</div>
+<div class="col-12 text-center mt-5">
+<div class="ratio ratio-16x9" style="max-width:900px;margin:0 auto;">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/vzGllw18DkA" style="border-radius:18px;" title="Harvard University Free Course"></iframe>
+</div>
+</div>
+</section></div>
+</div>
+<br/>
+<section class="section-padding" id="free-courses">
+<div class="container">
+<div class="row">
+<div class="col-12 text-center mb-4">
+<h2>كورسات مجانية</h2>
+<p class="text-muted">شاهد الكورسات المجانية في كل قسم وابدأ رحلتك البرمجية!</p>
+</div>
+<!-- قسم كورسات الويب -->
+<div class="col-12 mb-3">
+<!-- مثال زر القسم (لا تغير الكلاس أو الداتا) -->
+<button class="btn btn-outline-primary w-100 text-start d-flex align-items-center justify-content-between toggle-section-btn" data-target="#web-courses">
+<span>كورسات الويب</span>
+<span class="arrow-anim bi bi-chevron-down"></span>
+</button>
+<div class="row collapse show mt-3" id="web-courses">
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/qfPUMV9J5yw" title="Learn HTML In One Video - تعلم HTML في فيديو واحد كورس كامل"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">تعلم HTML في فيديو واحد</h5>
+<p>كورس شامل لتعلم HTML من الصفر حتى الاحتراف.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/aHzw_8wWl48" title="HTML &amp; CSS Crash Course [Arabic]"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">HTML &amp; CSS Crash Course</h5>
+<p>شرح عملي بالعربي لبناء صفحات ويب احترافية.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/zJSY8tbf_ys" title="Frontend Web Development Bootcamp Course"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">Frontend Bootcamp</h5>
+<p>تعلم JavaScript, HTML, CSS في كورس واحد شامل.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/q3yFo-t1ykw" title="تعلم html في فيديو واحد فقط"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">تعلم HTML للمبتدئين</h5>
+<p>كورس HTML كامل للمبتدئين خطوة بخطوة.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/Pwatx1n1Ws0" title="كورس شرح اساسيات بناء صفحات الويب"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">أساسيات بناء صفحات الويب</h5>
+<p>ابدأ من الصفر وتعلم HTML &amp; CSS في 90 دقيقة.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- قسم كورسات بايثون -->
+<div class="col-12 mb-3">
+<button class="btn btn-outline-success w-100 text-start d-flex align-items-center justify-content-between toggle-section-btn" data-target="#python-courses">
+<span>كورسات بايثون</span>
+<span class="bi bi-chevron-down"></span>
+</button>
+<div class="row collapse mt-3" id="python-courses">
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/ij6qQQlGKtE" title="كورس لغة بايثون في 300 دقيقة"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">كورس بايثون كامل</h5>
+<p>تعلم لغة بايثون من الصفر في 300 دقيقة.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/_uQrJ0TkZlc" title="Python Full Course for Beginners"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">Python Full Course (English)</h5>
+<p>كورس بايثون كامل للمبتدئين باللغة الإنجليزية.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/nyz2sieUtsI" title="تعليم لغة برمجة بايثون خطوة بخطوة"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">تعليم بايثون خطوة بخطوة</h5>
+<p>دورة كاملة لاحتراف بايثون من البداية.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/eeRw__TlgmQ" title="تعلم بايثون بالكامل في فيديو واحد"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">تعلم بايثون بالكامل</h5>
+<p>كورس بايثون كامل للمبتدئين في فيديو واحد.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/jBzwzrDvZ18" title="Python Backend Web Development Course (with Django)"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">Python Backend with Django</h5>
+<p>تعلم تطوير الويب الخلفي باستخدام Django.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- قسم كورسات أوفيس -->
+<div class="col-12 mb-3">
+<button class="btn btn-outline-warning w-100 text-start d-flex align-items-center justify-content-between toggle-section-btn" data-target="#office-courses">
+<span>كورسات أوفيس</span>
+<span class="bi bi-chevron-down"></span>
+</button>
+<div class="row collapse mt-3" id="office-courses">
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/DvMGqgCSGIE" title="Microsoft powerpoint | تعلم مايكروسوفت بوربوينت"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">تعلم بوربوينت</h5>
+<p>كورس بوربوينت من البداية للاحتراف خطوة بخطوة.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/n5EBHgMIVck" title="Microsoft excel 2023| تعلم مايكروسوفت اكسل"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">تعلم إكسل</h5>
+<p>كورس إكسل من البداية للاحتراف خطوة بخطوة.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/51l9s_YKN1E" title="دليلك لتعلم برنامج الكتابة مايكروسوفت وورد من البداية"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">تعلم وورد</h5>
+<p>دليلك لتعلم برنامج الكتابة مايكروسوفت وورد من البداية.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- قسم أساسيات البرمجة والخوارزميات -->
+<div class="col-12 mb-3">
+<button class="btn btn-outline-dark w-100 text-start d-flex align-items-center justify-content-between toggle-section-btn" data-target="#algo-courses">
+<span>أساسيات البرمجة والخوارزميات</span>
+<span class="bi bi-chevron-down"></span>
+</button>
+<div class="row collapse mt-3" id="algo-courses">
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/jPDtod7M_Bc" title="البرمجة : الخوارزميات والفرق بينها وبين لغات البرمجة"></iframe>
+</div>
+<div class="custom-block p-3 custom-block-body">
+<h5 class="mb-2">الخوارزميات وأهميتها</h5>
+<p>مقدمة عن الخوارزميات ودورها في البرمجة.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/AMrXoI1UkrQ" title="كورس Linked List في 120 دقيقة – شرح كامل خطوة بخطوة"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">هياكل البيانات: Linked List</h5>
+<p>شرح كامل لهياكل البيانات مثل القوائم، المصفوفات، الأشجار، الرسوم البيانية.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/uxIZ23K5dEk" title="البرمجة كائنية التوجه خطوة بخطوة"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">البرمجة الكائنية (OOP)</h5>
+<p>تعلم البرمجة الكائنية خطوة بخطوة باستخدام بايثون.</p>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 mb-4">
+<div class="custom-block-wrap">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/06h470AiBZ4" title="كورس مقدمة عن أساسيات البرمجة للمبتدئين"></iframe>
+</div>
+<div class="custom-block p-3">
+<h5 class="mb-2">مقدمة أساسيات البرمجة</h5>
+<p>كورس محو الأمية البرمجية للمبتدئين.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section></main>
+<footer class="site-footer">
+<div class="container">
+<div class="row align-items-center justify-content-center text-center">
+<div class="col-12 mb-3">
+<img alt="Smart Brain Logo" class="footer-logo animate__animated animate__pulse animate__infinite" src="https://i.top4top.io/p_3474t6e4k1.png" style="width:110px;height:110px;object-fit:contain;display:inline-block;border-radius:24px;box-shadow:0 4px 24px #1976d233;"/>
+</div>
+<div class="col-lg-4 col-md-6 col-12 mx-auto">
+<h5 class="site-footer-title mb-3">Contact Information</h5>
+<p class="text-white d-flex mb-2">
+<i class="bi-telephone me-2"></i>
+<a class="site-footer-link" href="tel:+201108279642">+201108279642</a>
+</p>
+<p class="text-white d-flex">
+<i class="bi-envelope me-2"></i>
+<a class="site-footer-link" href="mailto:admin@ymoo.site">admin@ymoo.site</a>
+</p>
+<p class="text-white d-flex mt-3">
+<i class="bi-geo-alt me-2"></i>
+                            Egypt / Dakahliya / Almansora
+                        </p>
+<a class="custom-btn btn mt-3" href="https://www.google.com/maps/place/Al+Mansoura,+Dakahlia+Governorate,+Egypt/" rel="noopener" target="_blank">Get Direction</a>
+</div>
+</div>
+<!-- Admin Panel Trigger -->
+<div class="row mt-4">
+</div>
+</div>
+<div class="site-footer-bottom">
+<div class="container">
+<div class="row">
+<div class="col-lg-6 col-md-7 col-12">
+<p class="copyright-text mb-0">Copyright © 2036 <a href="#">Smart Brain</a>.
+                            Design: <a href="#" target="_blank">Smart Brain</a></p>
+</div>
+<div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
+<ul class="social-icon">
+<li class="social-icon-item">
+<a class="social-icon-link bi-twitter" href="#"></a>
+</li>
+<li class="social-icon-item">
+<a class="social-icon-link bi-facebook" href="#"></a>
+</li>
+<li class="social-icon-item">
+<a class="social-icon-link bi-instagram" href="#"></a>
+</li>
+<li class="social-icon-item">
+<a class="social-icon-link bi-linkedin" href="#"></a>
+</li>
+<li class="social-icon-item">
+<a class="social-icon-link bi-youtube" href="#"></a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- JAVASCRIPT FILES -->
+<style>
+        /* Paid course price badge always visible and styled */
+        .price-badge {
+          display: inline-block;
+          font-weight: bold;
+          box-shadow: 0 2px 8px #1976d233;
+          margin-left: 8px;
+          margin-right: 8px;
+        }
+        /* Login button always visible in dark mode */
+        .dark-mode #loginBtn {
+          background: #1976d2 !important;
+          color: #fff !important;
+          border: none;
+        }
+        /* Animation for paid courses */
+        .paid-course-block {
+          animation: fadeInUp 1s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translate3d(0,40px,0); }
+          to { opacity: 1; transform: none; }
+        }
+        .arrow-anim {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e3f0ff 0%, #d1eaff 100%);
+  color: #1976d2;
+  font-size: 1.5em;
+  box-shadow: 0 2px 8px #1976d233;
+  transition: transform 0.4s cubic-bezier(.4,2,.6,1), background 0.3s, color 0.3s;
+  cursor: pointer;
+  border: 2px solid #1976d2;
+}
+.toggle-section-btn[aria-expanded="true"] .arrow-anim,
+.toggle-section-btn.open .arrow-anim {
+  transform: rotate(180deg) scale(1.15);
+  background: linear-gradient(135deg, #1976d2 0%, #63a4ff 100%);
+  color: #fff;
+  border-color: #1976d2;
+  box-shadow: 0 4px 16px #1976d244;
+}
+.toggle-section-btn .arrow-anim:hover {
+  background: #1976d2;
+  color: #fff;
+  transform: scale(1.15);
+}
+
+body.dark-mode {
+  background: #181a1b !important;
+  color: #fff !important;
+}
+.dark-mode .site-header,
+.dark-mode .modal-content,
+.dark-mode .benefit-card,
+.dark-mode .custom-block-wrap,
+.dark-mode .custom-block,
+.dark-mode .section-bg,
+.dark-mode .footer-logo,
+.dark-mode .site-footer,
+.dark-mode .modal-body,
+.dark-mode .btn,
+.dark-mode .custom-btn,
+.dark-mode .form-control {
+  background: #23242a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .custom-block-body,
+.dark-mode .custom-block p,
+.dark-mode .custom-block h5,
+.dark-mode .custom-block .mb-3 {
+  color: #fff !important;
+  text-shadow: 0 1px 2px #0007;
+}
+.dark-mode .custom-block-wrap,
+.dark-mode .benefit-card {
+  box-shadow: 0 4px 24px #0005, 0 1.5px 8px #1976d299;
+}
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  background: #23242a !important;
+  color: #fff !important;
+}
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background: #23242a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+
+}
+
+
+#welcome-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: #0d6efd11;
+  border-radius: 40px;
+  box-shadow: 0 4px 16px #0d6efd22;
+  max-width: fit-content;
+  margin: 20px auto;
+}
+
+#welcome-user .circle {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #1976d2, #63a4ff);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #0003;
+}
+
+#welcome-user span {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #1976d2;
+
+  .btn btn-danger btn-logout{
+border-radius: 50%;
+  }
+}
+
+        </style>
+<script>
+        // Toggle dark/light mode for full background and elements
+        document.getElementById('toggle-dark').addEventListener('click', function() {
+          var body = document.body;
+          var icon = document.getElementById('toggle-dark-icon');
+          body.classList.toggle('dark-mode');
+          if (body.classList.contains('dark-mode')) {
+            body.style.background = '#181a1b';
+            document.querySelector('.site-header').style.background = '#23242a';
+            icon.classList.remove('bi-sun');
+            icon.classList.add('bi-moon');
+          } else {
+            body.style.background = '#fff';
+            document.querySelector('.site-header').style.background = '#fff';
+            icon.classList.remove('bi-moon');
+            icon.classList.add('bi-sun');
+          }
+        });
+
+        // Classic animation and effects for paid courses
+        document.addEventListener('DOMContentLoaded', function() {
+          // Classic hover effect for paid courses
+          var paidBlocks = document.querySelectorAll('#section_3 .paid-course-block');
+          paidBlocks.forEach(function(block) {
+            block.style.transition = 'transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.4s cubic-bezier(.4,2,.6,1)';
+            block.addEventListener('mouseenter', function() {
+              block.style.transform = 'translateY(-10px) scale(1.04)';
+              block.style.boxShadow = '0 8px 32px #1976d244';
+            });
+            block.addEventListener('mouseleave', function() {
+              block.style.transform = '';
+              block.style.boxShadow = '';
+            });
+          });
+          // Classic button effect
+          var paidBtns = document.querySelectorAll('#section_3 .custom-btn');
+          paidBtns.forEach(function(btn) {
+            btn.style.transition = 'transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s cubic-bezier(.4,2,.6,1)';
+            btn.addEventListener('mouseenter', function() {
+              btn.style.transform = 'scale(1.07)';
+              btn.style.boxShadow = '0 4px 16px #1976d244';
+            });
+            btn.addEventListener('mouseleave', function() {
+              btn.style.transform = '';
+              btn.style.boxShadow = '';
+            });
+          });
+        });
+
+document.addEventListener('DOMContentLoaded', function() {
+ 
+
+  function showWelcome(name) {
+    // لا تكرر العنصر إذا كان موجود
+    if (document.getElementById('welcome-user')) return;
+    var welcomeDiv = document.createElement('div');
+    welcomeDiv.id = 'welcome-user';
+    welcomeDiv.style = "display:flex;align-items:center;justify-content:center;gap:10px;color:#0d6efd;font-size:1.2em;text-align:center;margin-top:10px;";
+    // دائرة باسم أول حرف من الاسم
+    var circle = document.createElement('div');
+    circle.style = "width:38px;height:38px;background:#1976d2;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1em;";
+    circle.textContent = name.trim().charAt(0).toUpperCase();
+    // النص
+    var span = document.createElement('span');
+    span.textContent = "Welcome, " + name + "!";
+    welcomeDiv.appendChild(circle);
+    welcomeDiv.appendChild(span);
+    // إضافته بعد الهيدر
+    var header = document.querySelector('.site-header');
+    if(header) header.parentNode.insertBefore(welcomeDiv, header.nextSibling);
+  }
+
+  getAndShowUserName();
+});
+
+
+document.querySelectorAll('.toggle-section-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var target = document.querySelector(btn.getAttribute('data-target'));
+    if (target.classList.contains('show')) {
+      target.classList.remove('show');
+      btn.querySelector('span.bi').classList.remove('bi-chevron-up');
+      btn.querySelector('span.bi').classList.add('bi-chevron-down');
+    } else {
+      target.classList.add('show');
+      btn.querySelector('span.bi').classList.remove('bi-chevron-down');
+      btn.querySelector('span.bi').classList.add('bi-chevron-up');
+    }
+  });
+});
+
+</script>
+<style>
+
+
+/* اجعل نص الكروت واضح في كل الأوضاع */
+.custom-block-body, .custom-block p, .custom-block h5, .custom-block .mb-3 {
+  color: #222 !important;
+}
+.dark-mode .custom-block-body, 
+.dark-mode .custom-block p, 
+.dark-mode .custom-block h5, 
+.dark-mode .custom-block .mb-3 {
+  color: #fff !important;
+}
+#section_3 .custom-block-wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#section_3 .custom-block {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#section_3 .custom-block-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+@media (max-width: 991px) {
+  #section_3 .custom-block-image {
+    height: 180px;
+  }
+}
+
+
+/* تأثير ظل وتحريك للكروت */
+.custom-block-wrap, .paid-course-block {
+  box-shadow: 0 4px 24px #0001, 0 1.5px 8px #1976d233;
+  border-radius: 18px;
+  transition: box-shadow 0.4s cubic-bezier(.4,2,.6,1), transform 0.4s cubic-bezier(.4,2,.6,1);
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.dark-mode .custom-block-wrap, .dark-mode .paid-course-block {
+  background: #23242a;
+  box-shadow: 0 4px 24px #0005, 0 1.5px 8px #1976d299;
+}
+
+/* تأثير عند المرور */
+.custom-block-wrap:hover, .paid-course-block:hover {
+  box-shadow: 0 8px 32px #1976d244, 0 8px 32px #0002;
+  transform: translateY(-8px) scale(1.03) rotate(-1deg);
+}
+
+/* تأثير زر الكورس */
+.custom-btn {
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 2px 8px #1976d233;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.custom-btn:hover {
+  background: #1976d2 !important;
+  color: #fff !important;
+  transform: scale(1.06) rotate(-2deg);
+  box-shadow: 0 6px 24px #1976d244;
+}
+
+
+.userName{
+  display: flex;
+  border-radius: 50%;
+}
+
+/* تأثير نص الكارد ليكون واضح في كل الأوضاع */
+.custom-block-body, .custom-block p, .custom-block h5, .custom-block .mb-3 {
+  color: #23242a !important;
+  text-shadow: 0 1px 2px #fff7;
+}
+.dark-mode .custom-block-body, 
+.dark-mode .custom-block p, 
+.dark-mode .custom-block h5, 
+.dark-mode .custom-block .mb-3 {
+  color: #fff !important;
+  text-shadow: 0 1px 2px #0007;
+}
+
+/* تأثير بسيط للعنوان */
+h2, h5 {
+  letter-spacing: 1px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+h2:hover, h5:hover {
+  color: #1976d2;
+}
+
+/* تأثير متدرج عند تمرير الماوس على الكارد */
+.custom-block-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, #1976d233 0%, #fff0 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 1;
+  pointer-events: none;
+}
+.custom-block-wrap:hover::before {
+  opacity: 1;
+}
+.dark-mode #student-benefits,
+.dark-mode #halfood-course {
+  background: #23242a !important;
+}
+
+.dark-mode #student-benefits p,
+.dark-mode #student-benefits span,
+.dark-mode #student-benefits b,
+.dark-mode #student-benefits a {
+  color: #fff !important;
+}
+
+#welcome-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: #0d6efd11;
+  border-radius: 40px;
+  box-shadow: 0 4px 16px #0d6efd22;
+  max-width: fit-content;
+  margin: 20px auto;
+}
+
+#welcome-user .circle {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #1976d2, #63a4ff);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #0003;
+}
+
+#welcome-user span {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+
+#welcome-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: #e3f2fd;
+  border-radius: 40px;
+  box-shadow: 0 4px 16px #1976d244;
+  max-width: fit-content;
+  margin: 20px auto;
+  font-family: sans-serif;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#welcome-user .circle {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #1976d2, #63a4ff);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #0003;
+}
+
+#welcome-user span {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+/* Dark mode support */
+body.dark-mode #welcome-user {
+  background: #0d6efd22;
+}
+
+body.dark-mode #welcome-user span {
+  color: #fff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+body.dark-mode #welcome-user {
+  background: #0d6efd22 !important;
+}
+body.dark-mode #welcome-user span {
+  color: #fff !important;
+}
+
+#welcome-user.welcome-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 25px auto;
+  padding: 12px 24px;
+  background: #e3f2fd;
+  border-radius: 40px;
+  box-shadow: 0 4px 16px #1976d244;
+  max-width: fit-content;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+#welcome-user .circle-avatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #1976d2, #63a4ff);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #0003;
+}
+
+#welcome-user #userNameText {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+body.dark-mode #welcome-user {
+  background: #0d6efd22;
+}
+
+body.dark-mode #welcome-user #userNameText {
+  color: #fff;
+}
+
+#connectionBanner {
+  animation: slideDown 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    background-color: #000;
+    overflow: hidden;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border: none;
+    display: none; /* نخفي الفيديو الافتراضي */
+  }
+
+  .video-cover {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://i.top4top.io/p_3474t6e4k1.png') center center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    z-index: 2;
+    transition: .3s ease;
+  }
+
+  .video-wrapper.playing .video-cover {
+    display: none;
+  }
+
+  .video-wrapper.playing iframe {
+    display: block;
+  }
+
+
+  /* زر الشات الدائري */
+#chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* نافذة الشات */
+#chatbot-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: none;
+  flex-direction: column;
+  z-index: 1001;
+}
+
+/* الهيدر للنافذة */
+.chatbot-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* الشات نفسه */
+#chatbot-popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* زر الشات */
+#chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* نافذة الشات */
+#chatbot-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 10000;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* هيدر النافذة */
+.chatbot-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* زر الإغلاق */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* iframe */
+#chatbot-popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+</style>
+<!-- Lazy YouTube Embed Script -->
+<script>
+  // عنصر لعرض رسالة الاتصال
+  const connectionBanner = document.createElement('div');
+  connectionBanner.id = 'connectionBanner';
+  connectionBanner.style.position = 'fixed';
+  connectionBanner.style.top = '0';
+  connectionBanner.style.left = '0';
+  connectionBanner.style.width = '100%';
+  connectionBanner.style.padding = '0.75rem';
+  connectionBanner.style.textAlign = 'center';
+  connectionBanner.style.fontWeight = 'bold';
+  connectionBanner.style.zIndex = '9999';
+  connectionBanner.style.display = 'none';
+  document.body.appendChild(connectionBanner);
+
+  function updateConnectionStatus() {
+    const online = navigator.onLine;
+    if (!online) {
+      connectionBanner.textContent = 'You are offline. Some features may not work.';
+      connectionBanner.style.backgroundColor = '#dc3545'; // أحمر
+      connectionBanner.style.color = 'white';
+      connectionBanner.style.display = 'block';
+    } else {
+      connectionBanner.style.display = 'none';
+    }
+  }
+
+  // أول ما الصفحة تفتح
+  updateConnectionStatus();
+
+  // عند تغير حالة الاتصال
+  window.addEventListener('online', updateConnectionStatus);
+  window.addEventListener('offline', updateConnectionStatus);
+
+  // منع إرسال النماذج في حالة أوفلاين
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    form.addEventListener('submit', (e) => {
+      if (!navigator.onLine) {
+        e.preventDefault();
+        alert('You are offline. Please check your internet connection.');
+      }
+    });
+  });
+
+
+  document.addEventListener('DOMContentLoaded', async () => {
+  const { data: { user } } = await supabaseClient.auth.getUser();
+
+  if (user) {
+    const name = user.user_metadata?.full_name || user.email || 'User';
+    const avatar = user.user_metadata?.avatar_url || '';
+
+    localStorage.setItem("userName", name);
+    if (avatar) localStorage.setItem("userAvatar", avatar);
+    
+    // عرض الاسم أو الصورة لو عايز
+    console.log("Logged in as:", name);
+  } else {
+    // مش مسجل، رجعه للصفحة الرئيسية
+    window.location.replace("login.html");
+  }
+});
+
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".ratio iframe[src*='youtube.com']").forEach(iframe => {
+      const parent = iframe.parentElement;
+      const videoWrapper = document.createElement("div");
+      videoWrapper.classList.add("video-wrapper");
+
+      const cover = document.createElement("div");
+      cover.classList.add("video-cover");
+
+      // نقل iframe إلى الـ wrapper
+      videoWrapper.appendChild(iframe.cloneNode());
+      videoWrapper.appendChild(cover);
+
+      // حذف الفيديو القديم وإضافة الشكل الجديد
+      parent.innerHTML = "";
+      parent.appendChild(videoWrapper);
+
+      // عند الضغط على الصورة يبدأ الفيديو
+      cover.addEventListener("click", () => {
+        const newIframe = videoWrapper.querySelector("iframe");
+        const src = newIframe.src;
+        newIframe.src = src.includes("?") ? src + "&autoplay=1" : src + "?autoplay=1";
+        videoWrapper.classList.add("playing");
+      });
+    });
+  });
+
+  -
+  function toggleChatbot() {
+    const popup = document.getElementById("chatbot-popup");
+    popup.style.display = popup.style.display === "block" ? "none" : "block";
+  }
+</script>
+<!-- Chatbot Toggle Button -->
+<div id="chatbot-button" onclick="toggleChatbot()">
+<i class="bi bi-chat-dots-fill"></i>
+</div>
+<!-- Chatbot Popup -->
+<div id="chatbot-popup">
+<div class="chatbot-header">
+<span>Smart Assistant</span>
+<button class="close-btn" onclick="toggleChatbot()">×</button>
+</div>
+<iframe frameborder="0" src="https://smart-brain-chat.lovable.app"></iframe>
+</div>
+<script>
+  function toggleChatbot() {
+    const popup = document.getElementById("chatbot-popup");
+    popup.style.display = popup.style.display === "block" ? "none" : "block";
+  }
+</script>
+<script>
+  // تحديث النصوص بناءً على اللغة المختارة
+  const translations = {
+    en: {
+      "Welcome To Smart Brain": "Welcome To Smart Brain",
+      "We Are Here To Help You To Learn And Get Free Courses": "We Are Here To Help You To Learn And Get Free Courses",
+      "Learn More": "Learn More",
+      "Welcome In Our Website": "Welcome In Our Website",
+      "Rewards Shop": "Rewards Shop",
+      "Free Course from Halfood American University": "Free Course from Halfood American University",
+      "كورسات مجانية": "Free Courses",
+      "شاهد الكورسات المجانية في كل قسم وابدأ رحلتك البرمجية!": "Watch the free courses in each category and start your coding journey!"
+    },
+    ar: {
+      "Welcome To Smart Brain": "مرحبًا بك في سمارت برين",
+      "We Are Here To Help You To Learn And Get Free Courses": "نحن هنا لمساعدتك على التعلم والحصول على كورسات مجانية",
+      "Learn More": "اعرف المزيد",
+      "Welcome In Our Website": "مرحبًا بك في موقعنا",
+      "Rewards Shop": "متجر الجوائز",
+      "Free Course from Halfood American University": "كورس مجاني من جامعة هالفود الأمريكية",
+      "Free Courses": "كورسات مجانية",
+      "Watch the free courses in each category and start your coding journey!": "شاهد الكورسات المجانية في كل قسم وابدأ رحلتك البرمجية!"
+    }
+  };
+
+  function setLanguage(lang) {
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    localStorage.setItem("siteLang", lang);
+    document.getElementById("lang-toggle").innerText = lang === "en" ? "AR" : "EN";
+
+    const keys = Object.keys(translations[lang]);
+    document.querySelectorAll("h1,h2,h5,p,a,button,span").forEach(el => {
+      keys.forEach(key => {
+        if (el.innerText.trim() === translations[lang === "en" ? "ar" : "en"][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    });
+  }
+
+  document.getElementById("lang-toggle").addEventListener("click", () => {
+    const newLang = localStorage.getItem("siteLang") === "ar" ? "en" : "ar";
+    setLanguage(newLang);
+  });
+
+  // أول مرة بناءً على التخزين
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("siteLang") || "en";
+    setLanguage(savedLang);
+  });
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const name = localStorage.getItem("userName");
+  const avatar = localStorage.getItem("userAvatar");
+
+  if (name) {
+    const welcomeDiv = document.createElement('div');
+    welcomeDiv.id = 'welcome-user';
+    welcomeDiv.className = "welcome-box";
+
+    const circle = document.createElement('div');
+    circle.className = 'circle-avatar';
+
+    if (avatar) {
+      const img = document.createElement("img");
+      img.src = avatar;
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.borderRadius = "50%";
+      circle.appendChild(img);
+    } else {
+      circle.textContent = name.charAt(0).toUpperCase();
+    }
+
+    const span = document.createElement('span');
+    span.id = "userNameText";
+    span.textContent = `Welcome, ${name}`;
+
+    welcomeDiv.appendChild(circle);
+    welcomeDiv.appendChild(span);
+
+    document.querySelector('.site-header').after(welcomeDiv);
+  }
+});
+supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'index.html' } })
+
+
+document.getElementById("google-login").addEventListener("click", async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'https://smartbrain.com/index.html' // غيرها لنطاقك الحقيقي
+    }
+  });
+  if (error) alert("Login failed: " + error.message);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<script>
+  const supabaseUrl = "https://qtacfdhzdptoyauttbsg.supabase.co";
+  const supabaseKey = "YOUR_PUBLIC_ANON_KEY"; // من لوحة supabase
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  document.getElementById("signupForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("signupName").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: name }
+      }
+    });
+
+    if (error) {
+      alert("Signup failed: " + error.message);
+    } else {
+      localStorage.setItem("userName", name);
+      alert("Signup successful!");
+      window.location.href = "index.html";
+    }
+  });
+
+  document.getElementById('show-signup').onclick = function() {
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('signupForm').style.display = 'block';
+  document.getElementById('form-title').textContent = 'Sign Up';
+};
+
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const name = localStorage.getItem("userName");
+    const avatar = localStorage.getItem("userImage");
+    const isLoggedIn = localStorage.getItem("loggedIn");
+
+    if (isLoggedIn === "true" && name) {
+      const container = document.getElementById("user-info");
+
+      const img = document.createElement("img");
+      img.style.width = "50px";
+      img.style.height = "50px";
+      img.style.borderRadius = "50%";
+      img.style.objectFit = "cover";
+      img.alt = "User Avatar";
+      img.src = avatar || "https://i.top4top.io/p_3474t6e4k1.png";
+
+      const span = document.createElement("span");
+      span.style.fontSize = "1.1rem";
+      span.style.color = "#333";
+      span.textContent = "Welcome, " + name;
+
+      container.appendChild(img);
+      container.appendChild(span);
+    }
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const isLoggedIn = localStorage.getItem("loggedIn");
+
+    if (isLoggedIn === "true") {
+      const loginNav = document.getElementById("login-nav");
+      if (loginNav) {
+        loginNav.style.display = "none";
+      }
+    }
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const name = localStorage.getItem("userName");
+    const avatar = localStorage.getItem("userImage");
+    const isLoggedIn = localStorage.getItem("loggedIn");
+
+    if (isLoggedIn === "true" && name) {
+      document.getElementById("user-info").style.display = "flex";
+      document.getElementById("userNameText").textContent = "Welcome, " + name;
+      document.getElementById("profileImage").src = avatar || "https://i.top4top.io/p_3474t6e4k1.png";
+    }
+
+    // تعديل الاسم
+    document.getElementById("editNameBtn").addEventListener("click", () => {
+      const newName = prompt("Enter your new name:", name);
+      if (newName) {
+        localStorage.setItem("userName", newName);
+        document.getElementById("userNameText").textContent = "Welcome, " + newName;
+      }
+    });
+
+    // تعديل الصورة
+    document.getElementById("changeImage").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imgData = e.target.result;
+          localStorage.setItem("userImage", imgData);
+          document.getElementById("profileImage").src = imgData;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // تسجيل الخروج
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      alert("Logged out successfully.");
+      window.location.href = "login.html";
+    });
+  });
+</script>
+<script>
+  const validPasswords = {
+    pro: "pro1",
+    premium: "pro2",
+    organization: "pro3"
+  };
+
+  let selectedPlan = null;
+
+  function askPassword(plan) {
+    selectedPlan = plan;
+    document.getElementById("password-box").style.display = "block";
+    document.getElementById("pass-error").style.display = "none";
+  }
+
+  function verifyPassword() {
+    const input = document.getElementById("plan-password").value;
+    if (input === validPasswords[selectedPlan]) {
+      localStorage.setItem("userPlan", selectedPlan);
+      document.getElementById("plan-modal").style.display = "none";
+      showUserPlan(); // show beside name
+    } else {
+      document.getElementById("pass-error").style.display = "block";
+    }
+  }
+
+  function selectPlan(plan) {
+    localStorage.setItem("userPlan", plan);
+    document.getElementById("plan-modal").style.display = "none";
+    showUserPlan(); // show beside name
+  }
+
+  function showUserPlan() {
+    const name = localStorage.getItem("userName");
+    const plan = localStorage.getItem("userPlan");
+    if (name && plan) {
+      const box = document.getElementById("user-info");
+      const badge = document.createElement("span");
+      badge.textContent = `[${plan.toUpperCase()}]`;
+      badge.className = "badge bg-secondary ms-2";
+      document.getElementById("userNameText").appendChild(badge);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const plan = localStorage.getItem("userPlan");
+    if (!plan) {
+      document.getElementById("plan-modal").style.display = "flex";
+    } else {
+      showUserPlan();
+    }
+  });
+</script>
+<script>
+  function showUserPlan() {
+    const name = localStorage.getItem("userName");
+    const plan = localStorage.getItem("userPlan");
+
+    if (name && plan) {
+      const span = document.getElementById("userNameText");
+      if (!span) return;
+
+      span.textContent = "Welcome, " + name + " ";
+      
+      const badge = document.createElement("span");
+      badge.textContent = `[${plan.toUpperCase()}]`;
+      badge.className = "badge bg-secondary ms-2";
+      span.appendChild(badge);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const plan = localStorage.getItem("userPlan");
+    if (!plan) {
+      document.getElementById("plan-modal").style.display = "flex";
+    } else {
+      showUserPlan();
+    }
+  });
+</script>
+<style>
+  body {
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', sans-serif;
+    color: #222;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .quiz-section {
+    max-width: auto;
+    margin: 60px auto;
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    animation: slideUp 1s ease forwards;
+  }
+
+  .question-block {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    animation: fadeIn 1s ease-in-out;
+    transition: background 0.3s;
+  }
+
+  .question-block label {
+    display: block;
+    margin: 6px 0;
+    cursor: pointer;
+    font-weight: 500;
+    color: #222;
+    transition: color 0.3s;
+  }
+
+  .correct { color: #198754; }
+  .wrong { color: #dc3545; }
+
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 🌙 وضع الليلي */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    .quiz-section {
+      background-color: #1e1e1e;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    }
+
+    .question-block {
+      background-color: #2a2a2a;
+    }
+
+    .question-block label {
+      color: #ddd;
+    }
+  }
+</style>
+<script>
+  function checkAnswer(name, correct) {
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+    const result = document.getElementById("result-" + name);
+    if (!selected) {
+      result.textContent = "⚠️ Please select an answer.";
+      result.className = "text-warning fw-bold";
+    } else if (selected.value === correct) {
+      result.textContent = "✅ Correct!";
+      result.className = "text-success fw-bold correct";
+    } else {
+      result.textContent = `❌ Wrong. Correct answer is: ${correct.toUpperCase()}`;
+      result.className = "text-danger fw-bold wrong";
+    }
+  }
+</script>
+</header></body>
+</html>

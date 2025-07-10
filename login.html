@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Smart Brain</title>
+<style>
+    body {
+      background-color: #181a1b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .auth-card {
+      background: #23242a;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
+    .form-control, .form-label {
+      background: transparent;
+      color: white;
+    }
+    .form-control {
+      border: 1px solid #444;
+    }
+    .btn-primary {
+      background-color: #0d6efd;
+      border: none;
+    }
+    .logo {
+      width: 80px;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    .toggle-link {
+      cursor: pointer;
+      color: #0d6efd;
+      text-decoration: underline;
+    }
+    #profilePreview {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 1rem;
+    }
+  </style>
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<div class="auth-card">
+<img alt="logo" class="logo" src="https://i.top4top.io/p_3474t6e4k1.png"/>
+<h3 class="text-center mb-4" id="form-title">Login</h3>
+<!-- Login Form -->
+<form id="loginForm">
+<div class="mb-3">
+<label class="form-label">Email</label>
+<input class="form-control" id="loginEmail" required="" type="email"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Password</label>
+<input class="form-control" id="loginPassword" required="" type="password"/>
+</div>
+<button class="btn btn-primary w-100" type="submit">Login</button>
+<div class="text-center mt-3">
+<span>Don't have an account? <span class="toggle-link" id="show-signup">Sign Up</span></span>
+</div>
+</form>
+<!-- Sign Up Form -->
+<form id="signupForm" style="display:none;">
+<div class="mb-3">
+<label class="form-label">Full Name</label>
+<input class="form-control" id="signupName" required="" type="text"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Email</label>
+<input class="form-control" id="signupEmail" required="" type="email"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Password</label>
+<input class="form-control" id="signupPassword" required="" type="password"/>
+</div>
+<div class="mb-3">
+<label class="form-label">Upload Profile Image</label>
+<input accept="image/*" class="form-control" id="signupImage" type="file"/>
+<img id="profilePreview" style="display:none;"/>
+</div>
+<button class="btn btn-primary w-100" type="submit">Sign Up</button>
+<div class="text-center mt-3">
+<span>Already have an account? <span class="toggle-link" id="show-login">Login</span></span>
+</div>
+</form>
+</div>
+<script>
+    // Toggle forms
+    document.getElementById("show-signup").onclick = () => {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("signupForm").style.display = "block";
+      document.getElementById("form-title").innerText = "Sign Up";
+    };
+    document.getElementById("show-login").onclick = () => {
+      document.getElementById("signupForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+      document.getElementById("form-title").innerText = "Login";
+    };
+
+    // Preview profile image
+    document.getElementById("signupImage").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const preview = document.getElementById("profilePreview");
+          preview.src = e.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Fake user storage (localStorage)
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("signupName").value;
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+      const imageInput = document.getElementById("signupImage");
+      const image = imageInput.files[0];
+
+      if (image) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          localStorage.setItem("userImage", e.target.result);
+          saveUser(name, email, password);
+        };
+        reader.readAsDataURL(image);
+      } else {
+        saveUser(name, email, password);
+      }
+    });
+
+    function saveUser(name, email, password) {
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userPass", password);
+      localStorage.setItem("loggedIn", "true");
+      alert("Account created. Redirecting...");
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      const storedEmail = localStorage.getItem("userEmail");
+      const storedPass = localStorage.getItem("userPass");
+
+      if (email === storedEmail && password === storedPass) {
+        localStorage.setItem("loggedIn", "true");
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Wrong email or password.");
+      }
+    });
+
+
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  
+  const name = document.getElementById("signupName").value;
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+  const imageInput = document.getElementById("signupImage");
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  // تحقق من الإيميل
+  const exists = users.find(u => u.email === email);
+  if (exists) {
+    alert("This email is already registered.");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const image = e.target.result;
+
+    const newUser = {
+      name,
+      email,
+      password,
+      role: null,          // Teacher / Student - لاحقًا
+      plan: null,          // Free / Pro - لاحقًا
+      avatar: image
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // حفظ الجلسة الحالية
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userImage", image);
+    localStorage.setItem("userEmail", email);
+
+    alert("Account created!");
+    window.location.href = "index.html";
+  };
+
+  if (imageInput.files[0]) {
+    reader.readAsDataURL(imageInput.files[0]);
+  } else {
+    // مفيش صورة مرفوعة
+    const newUser = {
+      name,
+      email,
+      password,
+      role: null,
+      plan: null,
+      avatar: null
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
+    alert("Account created!");
+    window.location.href = "index.html";
+  }
+});
+
+  </script>
+<script src="script.js"></script></body>
+</html>
